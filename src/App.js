@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+
+import BoilingVerdict from "./components/boilingVerdict/boilingVerdict.component";
+import TemperatureInput from "./components/temperatureInput/temperatureInput.component";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [temperature, setTemperature] = useState(0);
+	const [scaleType, setScaleType] = useState("c");
+
+	return (
+		<div className='App'>
+			<h1>Enter your temperature:</h1>
+			<TemperatureInput
+				type='c'
+				setTemperature={setTemperature}
+				setScaleType={setScaleType}
+			/>
+			<TemperatureInput
+				type='f'
+				setTemperature={setTemperature}
+				setScaleType={setScaleType}
+			/>
+
+			<BoilingVerdict
+				scaleType={scaleType}
+				temperature={parseInt(temperature)}
+			/>
+		</div>
+	);
 }
 
 export default App;
+
