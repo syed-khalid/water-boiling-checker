@@ -18,7 +18,6 @@ const TemperatureInput = ({
 		console.log(value, type, converter);
 		setTemperature(event.target.value);
 		setScaleType(type);
-		console.log(type);
 		updater(event.target.value);
 	};
 
