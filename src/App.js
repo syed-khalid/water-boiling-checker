@@ -5,8 +5,6 @@ import BoilingVerdict from "./components/boilingVerdict/boilingVerdict.component
 import TemperatureInput from "./components/temperatureInput/temperatureInput.component";
 import { useTemp } from "./context/TempContext";
 
-// Todo: Next make it so that when celsius is entered it should also show converted fahrenheit value and vice versa
-
 function App() {
 	const { temperature, toCelsius, toFahrenheit } = useTemp();
 	const [scaleType, setScaleType] = useState("c");
