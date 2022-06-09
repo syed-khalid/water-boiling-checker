@@ -1,19 +1,35 @@
-const TemperatureInput = ({ type, setTemperature, setScaleType }) => {
-	const scaleType = {
+import { useTemp } from "../../context/TempContext";
+
+const TemperatureInput = ({
+	value,
+	type,
+	scaleType,
+	setScaleType,
+	updater,
+}) => {
+	const { setTemperature, converter } = useTemp();
+
+	const typeScale = {
 		c: "Celsius",
 		f: "Fahrenheit",
 	};
 
+	const onChangeHandler = (event) => {
+		console.log(value, type, converter);
+		setTemperature(event.target.value);
+		setScaleType(type);
+		console.log(type);
+		updater(event.target.value);
+	};
+
 	return (
 		<>
-			<p>{scaleType[type]}</p>
+			<p>{typeScale[type]}</p>
 			<input
+				value={scaleType === type ? value : converter}
 				type='text'
-				placeholder={scaleType[type]}
-				onChange={(event) => {
-					setTemperature(event.target.value);
-					setScaleType(type);
-				}}
+				placeholder={typeScale[type]}
+				onChange={onChangeHandler}
 			/>
 		</>
 	);
